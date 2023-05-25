@@ -1,7 +1,6 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import Card from "./Card";
-import notes from "../notes"
 import CardInput from "./CardInput"
 
 function displayCard(note){
@@ -14,11 +13,24 @@ function displayCard(note){
 
 
 function App() {
+cont [notes, setNotes] = useState.([])
+
+  function addNote(note){
+    setNote(prevNotes => {
+     return [...prevNotes, newNote]
+    })
+  }
+
+
   return (
     <div className="App">
     <Header />
-    <CardInput />
-    {notes.map(displayCard)}
+    <CardInput onAdd={addNote}/>
+    notes.map((noteItem) => {
+      return <Note 
+      title={noteItem.title}
+      />
+    })
     <Footer />
     </div>
   );

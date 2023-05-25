@@ -1,30 +1,38 @@
 import { useState } from "react";
 import React from "react";
 
-function CardInput(){
-let [title, setTitle] = useState("");
-let [content, setContent] = useState("");  
 
-function saveNote(){
-    console.log(title)
-    console.log(content)
+function CardInput(props){
+let [note, setNote] = useState({
+    title: "",
+    content: ""
+});
+
+function handleChange(event){
+    const {name, value} = event.target
+    setNote(prevNote => {
+        return {
+            ...prevNote,
+            [name]: value
+        }
+    })
 }
 
-function handleTitleChange(event){
-    setTitle(event.target.value)
+function saveNote (event){
+    props.onAdd(note)
+    event.preventDefault()
+
 }
 
-function handleContentChange(event){
-    setContent(event.target.value)
-}
+
 
 
 
 return (
 <div>
     <form>
-        <input onChange={handleTitleChange} type="text" placeholder="Title" value={title} />
-        <input onChange={handleContentChange} type="text" placeholder="Take a Note..." rows="3" value={content} />
+        <input onChange={handleChange} type="text" placeholder="Title" name="title" value={note.title} />
+        <textarea onChange={handleChange} type="text" placeholder="Take a Note..." rows="3" name="content" value={note.content} />
         <button onClick={saveNote}>+</button>
     </form>
 </div>   
