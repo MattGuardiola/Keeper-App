@@ -20,6 +20,10 @@ function handleChange(event){
 
 function saveNote (event){
     props.onAdd(note)
+    setNote({
+        title: "",
+        content: ""
+    })
     event.preventDefault()
 
 }
