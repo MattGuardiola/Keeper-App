@@ -1,10 +1,11 @@
+import React, { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import Card from "./Card";
+import Note from "./Note";
 import CardInput from "./CardInput"
 
 function displayCard(note){
-  return <Card 
+  return <Note 
   key={note.key}
   title={note.title}
   content={note.content}
@@ -13,10 +14,10 @@ function displayCard(note){
 
 
 function App() {
-cont [notes, setNotes] = useState.([])
+const [notes, setNotes] = useState([])
 
-  function addNote(note){
-    setNote(prevNotes => {
+  function addNote(newNote){
+    setNotes(prevNotes => {
      return [...prevNotes, newNote]
     })
   }
@@ -26,11 +27,12 @@ cont [notes, setNotes] = useState.([])
     <div className="App">
     <Header />
     <CardInput onAdd={addNote}/>
-    notes.map((noteItem) => {
+    {notes.map((noteItem) => {
       return <Note 
       title={noteItem.title}
+      content={noteItem.content}
       />
-    })
+    })}
     <Footer />
     </div>
   );
